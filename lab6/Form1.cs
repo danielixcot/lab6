@@ -39,17 +39,19 @@ namespace lab6
         public void CargarVehiculos()
         {
             // leer archivo y cargar la lista
-            string fileName = "Clientes.txt";
+            string fileName = "Vehiculos.txt";
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
             while (reader.Peek() > -1)
             {
-                Cliente cliente = new Cliente();
-                cliente.Nit = Convert.ToInt16(reader.ReadLine());
-                cliente.Nombre = reader.ReadLine();
-                cliente.Direccion = reader.ReadLine();
+                Vehiculo vehiculo = new Vehiculo();
+                vehiculo.Placa = Convert.ToInt16(reader.ReadLine());
+                vehiculo.Marca = reader.ReadLine();
+                vehiculo.Modelo = reader.ReadLine();
+                vehiculo.Modelo = reader.ReadLine();
+                vehiculo.Kilometro = Convert.ToInt16(reader.ReadLine());
 
-                Clientes.Add(cliente);
+                vehiculos.Add(vehiculo);
             }
             reader.Close();
         }
@@ -100,6 +102,10 @@ namespace lab6
             CargarClientes();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = Clientes ;
+            dataGridView1.Refresh();
+            CargarVehiculos();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = vehiculos;
             dataGridView1.Refresh();
         }
     }
